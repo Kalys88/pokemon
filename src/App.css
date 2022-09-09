@@ -50,12 +50,10 @@ li a {
 }
 
 .sidenav {
-  height: 200%;
+  height: 100%;
   width: 250px;
-  position: absolute;
   z-index: 1;
-  top: 90px;
-  left: 150px;
+  margin-left: 150px;
   overflow-x: hidden;
   border-right: 5px solid #121212;
   text-align: left;
@@ -94,7 +92,8 @@ li a {
 
 .sort {
   text-align: left;
-  margin-left: 470px;
+  margin-left: 40px;
+  padding-top: 10px;
 }
 
 .sort h3 {
@@ -143,12 +142,11 @@ p {
 
 .app-footer {
   background-color: #121212;
-  width: 1404px;
+  width: 100%;
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   color: #FFFFFF;
-  z-index: -9999;
 }
 
 .s-media {
@@ -416,4 +414,32 @@ li a {
   to {
     transform: rotate(360deg);
   }
+}
+
+.homepage__container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.homepage__content {
+  width: calc(100% - 400px);
+  min-height: 80vh;
+}
+
+.homepage__pokemons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 40px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+}
+
+.homepage__pokemons-item {
+  width: 45%;
+  margin-top: 25px;
 }

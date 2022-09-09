@@ -1,41 +1,44 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Header from "../components/Header";
 import SideNav from "../components/SideNav";
 import Sort from "../components/Sort";
 import Footer from "../components/Footer";
 
+import { fetchPokemons } from "../store/pokemons";
 
-const HomePage = ()=> {
-    return (
-        <>
-        <Header/>
-        {/*<SideNav/>*/}
-        <Sort/>
-        <br/>
-        <div className="pok">
-            <div>
-                <img src="http://www.smashbros.com/images/og/pikachu.jpg" alt=""/>
-                <p> Пикачу </p>
-            </div>
-            <div>
-                <img src="http://kakrisovat.top/wp-content/uploads/2019/01/bulbasaur-10.png" alt=""/>
-                <p> Бульбазавр </p>
-            </div>
+const HomePage = () => {
+  const pokemons = useSelector((state) => state.pokemons);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchPokemons());
+  }, []);
+
+  return (
+    <>
+      <Header />
+      <div className="homepage__container">
+        <SideNav />
+        <div className="homepage__content">
+          <Sort />
+
+          <ul className="homepage__pokemons">
+            {pokemons?.value?.map(({ name, imgSrc }) => {
+              return (
+                <li key={name} className="homepage__pokemons-item">
+                  <img src={imgSrc} alt="" />
+                  <p> {name} </p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
-        <br/>
-        <div className="pok">
-            <div>
-                <img src="https://www.youloveit.ru/uploads/gallery/main/162/squirtle.png" alt=""/>
-                <p> Сквиртл </p>
-            </div>
-            <div>
-                <img src="https://www.youloveit.ru/uploads/gallery/main/162/jigglypuff.png" alt=""/>
-                <p> Джигглипафф </p>
-            </div>
-        </div>
-      <Footer/>
-      </>
-    )
-}
+      </div>
+      <Footer />
+    </>
+  );
+};
 
 export default HomePage;
